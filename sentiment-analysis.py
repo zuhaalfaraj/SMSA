@@ -10,7 +10,6 @@ class NewsSentiment:
         response = urlopen(req)
         self.soup = BeautifulSoup(response, features='html.parser')
         self.vader = SentimentIntensityAnalyzer()
-        self.tickers= ['AAPL', 'GOOGL', 'ZM','INTC','NVDA']
 
     def get_news_data(self):
         df= pd.DataFrame({'title':[],'date':[], 'time':[], 'sentiment':[]})
@@ -31,13 +30,13 @@ class NewsSentiment:
             df= df.append(data, ignore_index=True)
 
         self.df = df
-        return df
+        return df['title'][0]
 
 
 
 
 
 
-n= NewsSentiment('AAPL')
+n= NewsSentiment('GME')
 
 print(n.get_news_data())
