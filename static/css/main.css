@@ -26,3 +26,17 @@ img {
   width: min-content;
 }
 
+.tick{
+font-family: "Times New Roman", Times, serif;
+align: center;
+color: white;
+}
+
+p {
+font-family: "Times New Roman", Times, serif;
+font-size: large;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+

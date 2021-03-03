@@ -12,26 +12,36 @@ from main import StockMarketSentimentAnalysis
 import requests
 app = Flask(__name__)
 
-
-def plot_historical(ticker):
-    smsa= StockMarketSentimentAnalysis(ticker)
-    data= smsa.get_historical_data(2020,2,2,2020,6,6)
-    open = data['Open']
-    close = data['Close']
-    high = data['High']
-    low = data['Low']
-    date = data['Date']
-
+def plot_sentiment(ticker):
+    global smsa
+    smsa = StockMarketSentimentAnalysis(ticker)
+    sentiment_data = smsa.get_sentiment()
+    mean_df = sentiment_data.groupby('date').mean()
+    mean_df= mean_df.reset_index()
     data = [
-        px.line(
-            x= date,
-            y=close
+        go.Bar(
+            name='sentiment index',
+            x= mean_df['date'],
+            y=mean_df['sentiment']
         )
     ]
 
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
-
     return graphJSON
+
+def plot_h_date():
+    h_data= smsa.get_related_historical_data()
+    data = [
+        go.Bar( name='price difference',
+            x= h_data['Date'][1:],
+            y=h_data['Close'].diff()[1:],
+            marker={'color': 'red'}
+        )
+    ]
+
+    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON
+
 
 @app.route('/', methods=['POST'])
 def my_form_post():
@@ -45,30 +55,13 @@ def my_form_post():
     range= data['range']
     print(price)
 
-    bar = create_plot()
+    bar = plot_sentiment(text)
+    bar_2 = plot_h_date()
 
-    return render_template('index.html', plot=bar, price=price, change=change, market_cap=market_cap,
+    return render_template('index.html', ticker= text, plot=bar,plot_2= bar_2,
+                           price=price, change=change, market_cap=market_cap,
                            open_price=open_price, range=range)
 
-def create_plot():
-
-
-    N = 40
-    x = np.linspace(0, 1, N)
-    y = np.random.randn(N)
-    df = pd.DataFrame({'x': x, 'y': y}) # creating a sample dataframe
-
-
-    data = [
-        go.Bar(
-            x=df['x'], # assign x as the dataframe column 'x'
-            y=df['y']
-        )
-    ]
-
-    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return graphJSON
 
 @app.route('/')
 def index():
