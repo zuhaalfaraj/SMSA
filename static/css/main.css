@@ -40,3 +40,14 @@ font-size: large;
   padding: 10px;
 }
 
+.card-header .card-title {
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+.card-title {
+    font-size: 1.285rem;
+    line-height: 1.714rem;
+    color: #2c2e3e;
+    font-weight: 600;
+    font-family: Roboto,sans-serif;
+}
