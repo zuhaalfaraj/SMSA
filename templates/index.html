@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+{% endblock %}
+
+{% block body %}
+<img src="https://i.postimg.cc/y8Vn1zh9/logo.png" alt="logo" border="0"  style="display: block; margin-left: auto; margin-right: auto; width: 10%;">
+
+<div id="ticker">
+    <form method="POST">
+    <input name="text">
+    <input type="submit" value="get data">
+</form>
+
+        </div>
+<!--     start cards     -->
+<br>
+<div class="container">
+  <div class="row">
+<div class="col-xl-3 col-lg-6">
+  <div class="card card-stats mb-4 mb-xl-0 h-85">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title text-uppercase text-muted mb-0">Current Price</h5>
+          <span class="h2 font-weight-bold mb-0">{{price}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-3 col-lg-6">
+  <div class="card card-stats mb-4 mb-xl-0 h-85">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title text-uppercase text-muted mb-0">Open Price</h5>
+          <span class="h2 font-weight-bold mb-0">{{open_price}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-3 col-lg-6">
+  <div class="card card-stats mb-4 mb-xl-0 h-85">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title text-uppercase text-muted mb-0">52 Week Range</h5>
+          <span class="h2 font-weight-bold mb-0">{{open_price}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-3 col-lg-6">
+  <div class="card card-stats mb-4 mb-xl-0 h-85">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title text-uppercase text-muted mb-0">Market Cap</h5>
+          <span class="h2 font-weight-bold mb-0">{{market_cap}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  </div>
+<!--     end cards     -->
+<br>
+
+<div class="container">
+  <div class="row">
+<div class="col-6">
+  <div class="card card-statistics mb-0 h-100">
+    <div class="card-header">
+      <h4 class="card-title">
+        Positive vs Negative vs Natural
+      </h4>
+    </div>
+<div class="chart" id="pie_sent">
+    <script>
+        var pie_1 = {{pie_sent | safe}};
+        Plotly.newPlot('pie_sent',pie_1,{});
+    </script>
+</div>
+</div>
+  </div>
+
+    <div class="col-6">
+       <div class="card card-statistics mb-0 h-100">
+    <div class="card-header">
+      <h4 class="card-title">
+        Percentage Changes in a Year
+      </h4>
+    </div>
+<div class="chart" id="pie_change">
+    <script>
+        var pie_2 = {{pie_change | safe}};
+        Plotly.newPlot('pie_change',pie_2,{});
+    </script>
+</div>
+</div>
+    </div>
+</div>
+  </div>
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+       <div class="card card-statistics mb-0 h-100">
+          <div class="card-header">
+            <h4 class="card-title">
+              News Sentiment Index (-1,1)
+            </h4>
+            </div>
+      <div class="chart" id="bargraph">
+
+    <script>
+        var graphs = {{plot | safe}};
+        var layout = {
+        xaxis: {
+        automargin: true,
+        tickangle: 90,
+        title: {
+          text: "Date",
+          standoff: 20
+        }},
+      yaxis: {
+        range: [-1, 1],
+        automargin: true,
+        tickangle: 90,
+        title: {
+          text: "Sentiment Index",
+          standoff: 40
+        }}
+      };
+        Plotly.plot('bargraph',graphs,layout);
+    </script>
+</div>
+</div>
+  </div>
+<br>
+    <div class="col-6">
+      <div class="card card-statistics mb-0 h-100">
+      <div class="card-header">
+        <h4 class="card-title">
+          Change in Stock Price
+        </h4>
+      </div>
+      <div class="chart" id="bargraph_2">
+    <script>
+        var graphs_2 = {{plot_2 | safe}};
+        var layout_2 = {
+        xaxis: {
+        automargin: true,
+        tickangle: 90,
+        title: {
+          text: "Date",
+          standoff: 20
+        }},
+      yaxis: {
+        automargin: true,
+        tickangle: 90,
+        title: {
+          text: "Change",
+          standoff: 40
+        }}
+      };
+        Plotly.plot('bargraph_2',graphs_2,layout_2);
+    </script>
+</div>
+</div>
+  </div>
+
+
+</div>
+    </div>
+<br>
+<div class="container">
+     <div class="card card-statistics mb-0 h-100">
+      <div class="card-header">
+        <h4 class="card-title">
+          Changed Values with their Corresponding Sentiment Index
+        </h4>
+      </div>
+   <div class="chart" id="concat">
+    <script>
+        var hist = {{hst | safe}};
+        var sent = {{sent | safe}};
+        Plotly.plot('concat',hist,{});
+        Plotly.plot('concat',sent,{});
+    </script>
+</div>
+     </div>
+</div>
+
+
+{% endblock %}
