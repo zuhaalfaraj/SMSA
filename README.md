@@ -9,22 +9,22 @@ An analysis tool for stock market that contain numerical and sentiment analyszed
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/SyFx40WvVRM/0.jpg)](https://www.youtube.com/watch?v=SyFx40WvVRM)
 
 ## Requirements
-beautifulsoup4==4.9.3
-bs4==0.0.1
-Flask==1.1.2
-lxml==4.6.2
-nltk==3.5
-numpy==1.20.1
-pandas==1.2.2
-plotly==4.14.3
-response==0.5.0
-scikit-learn==0.24.1
-scipy==1.6.0
-Scrapy==1.7.3
-seaborn==0.11.1
-selenium==3.141.0
-sklearn==0.0
-spacy==3.0.3
+beautifulsoup4==4.9.3  
+bs4==0.0.1  
+Flask==1.1.2  
+lxml==4.6.2  
+nltk==3.5  
+numpy==1.20.1  
+pandas==1.2.2  
+plotly==4.14.3  
+response==0.5.0  
+scikit-learn==0.24.1  
+scipy==1.6.0  
+Scrapy==1.7.3  
+seaborn==0.11.1  
+selenium==3.141.0  
+sklearn==0.0  
+spacy==3.0.3  
 
 ## Setup
 - Create an environment
