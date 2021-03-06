@@ -6,7 +6,7 @@
 An analysis tool for stock market that contain numerical and sentiment analyszed data. The sentiment analysis is based on collected news about the selected company.
 
 ## Demo
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/SyFx40WvVRM/0.jpg)](https://www.youtube.com/watch?v=SyFx40WvVRM)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8fsmJagyWpc/0.jpg)](https://www.youtube.com/watch?v=8fsmJagyWpc)
 
 ## Requirements
 beautifulsoup4==4.9.3  
