@@ -3,7 +3,10 @@
 
 
 ## An Overview
-An analysis tool for stock market that contain numerical and sentiment analyszed data. The sentiment analysis is based on collected news about the selected company.
+SMSA is an "analysis tool for the US stock market". The platform mainly focuses on the sentiment behinds the news and how it reflects on the stock price and vice/versa. This is where the name came from (Stock Market Sentiment Analysis).
+
+Web Scrapping was used to acquire data from Yahoo Finance and get news as well. Moreover, NLP layer was used to classify the news based on how good or how bad they are. Finally, the dashboard was built using Flask + Plotly.
+
 
 ## Demo
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8fsmJagyWpc/0.jpg)](https://www.youtube.com/watch?v=8fsmJagyWpc)
